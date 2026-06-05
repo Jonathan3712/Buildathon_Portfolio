@@ -3,659 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jonathan Raj Katikala — AI Agent Builder · Buildathon Dallas 2026</title>
-<meta name="description" content="Full Stack Engineer & AI Agent Builder. Shipping production systems at Buildathon Dallas 2026. Agent Orchestration track.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Jonathan Raj Katikala — Buildathon Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #080C10;
-    --bg2: #0D1117;
-    --surface: #111820;
-    --surface2: #161E28;
-    --accent: #0EA5E9;
-    --accent2: #38BDF8;
-    --accent-dim: rgba(14,165,233,0.12);
-    --accent-glow: rgba(14,165,233,0.25);
-    --green: #22D3A5;
-    --amber: #F59E0B;
-    --text: #E2E8F0;
-    --text2: #94A3B8;
-    --text3: #475569;
-    --border: rgba(148,163,184,0.08);
-    --border-accent: rgba(14,165,233,0.3);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--bg);
-    color: var(--text);
+    background: #F0F4F8;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* GRID BACKGROUND */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(14,165,233,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(14,165,233,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* GLOW ORB */
-  .glow-orb {
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%);
-    top: -200px;
-    right: -200px;
-    pointer-events: none;
-    z-index: 0;
-    animation: orbFloat 8s ease-in-out infinite;
-  }
-
-  @keyframes orbFloat {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-30px, 40px); }
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    color: var(--text);
-    letter-spacing: 0.05em;
-  }
-
-  .nav-logo span { color: var(--accent); }
-
-  .nav-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid var(--border-accent);
-    padding: 5px 12px;
-    border-radius: 20px;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-  }
-
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--text2);
-    text-decoration: none;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-
-  /* SECTIONS */
-  section { position: relative; z-index: 1; }
-
-  /* HERO */
-  .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 120px 80px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 32px;
+    padding: 40px 20px;
   }
 
-  .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.2s;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    width: 40px; height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(52px, 8vw, 96px);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.4s;
-  }
-
-  .hero-name .accent { color: var(--accent); }
-
-  .hero-title {
-    font-size: 18px;
-    color: var(--text2);
-    font-weight: 300;
-    margin-bottom: 48px;
-    max-width: 560px;
-    line-height: 1.7;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.6s;
-  }
-
-  .hero-title strong { color: var(--text); font-weight: 500; }
-
-  .hero-cta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.8s;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: #000;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    padding: 14px 28px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.2s;
-    letter-spacing: 0.02em;
-  }
-
-  .btn-primary:hover {
-    background: var(--accent2);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px var(--accent-glow);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    padding: 14px 28px;
-    border-radius: 6px;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--border-accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  /* STATS BAR */
-  .stats-bar {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 40px 80px;
-  }
-
-  .stats-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-  }
-
-  .stat-item {
-    text-align: center;
-    padding: 0 20px;
-    border-right: 1px solid var(--border);
-  }
-
-  .stat-item:last-child { border-right: none; }
-
-  .stat-value {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 36px;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .stat-label {
+  .print-hint {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--text3);
+    color: #94A3B8;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  /* TRACK BADGE */
-  .track-section {
-    padding: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .track-card {
-    background: var(--surface);
-    border: 1px solid var(--border-accent);
-    border-radius: 12px;
-    padding: 40px;
+  /* CARD GRID — 2 per row for printing */
+  .cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .track-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--green), transparent);
-  }
-
-  .track-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--green);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .track-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    color: var(--text);
-    margin-bottom: 16px;
-    line-height: 1.1;
-  }
-
-  .track-title span { color: var(--accent); }
-
-  .track-desc {
-    color: var(--text2);
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  .track-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .skill-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid var(--border-accent);
-    padding: 6px 14px;
-    border-radius: 4px;
-    letter-spacing: 0.02em;
-  }
-
-  .skill-tag.green {
-    color: var(--green);
-    background: rgba(34,211,165,0.08);
-    border-color: rgba(34,211,165,0.25);
-  }
-
-  .skill-tag.amber {
-    color: var(--amber);
-    background: rgba(245,158,11,0.08);
-    border-color: rgba(245,158,11,0.25);
-  }
-
-  /* PROJECTS */
-  .projects-section {
-    padding: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    margin-bottom: 48px;
-  }
-
-  .section-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 40px;
-    color: var(--text);
-    line-height: 1.1;
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 380px);
     gap: 20px;
   }
 
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 32px;
-    transition: all 0.3s ease;
-    position: relative;
+  /* SINGLE CARD */
+  .card {
+    background: #07090D;
+    border-radius: 16px;
     overflow: hidden;
+    width: 380px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   }
 
-  .project-card:hover {
-    border-color: var(--border-accent);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--border-accent);
-  }
-
-  .project-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: start;
-  }
-
-  .project-card::after {
+  /* Top accent line */
+  .card::before {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #0EA5E9, #10B981, #0EA5E9);
   }
 
-  .project-card:hover::after { opacity: 1; }
-
-  .project-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--green);
-    background: rgba(34,211,165,0.08);
-    border: 1px solid rgba(34,211,165,0.2);
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .project-badge::before {
+  /* Grid bg */
+  .card::after {
     content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 1.5s ease-in-out infinite;
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(14,165,233,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14,165,233,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
   }
 
-  .project-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--text);
-    margin-bottom: 8px;
-    line-height: 1.2;
+  .card-inner {
+    position: relative;
+    z-index: 1;
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .project-stack {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    margin-bottom: 16px;
-    letter-spacing: 0.05em;
-  }
-
-  .project-desc {
-    color: var(--text2);
-    font-size: 14px;
-    line-height: 1.7;
+  /* TOP ROW — name + QR */
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 20px;
   }
 
-  .project-metrics {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+  .name-block {}
 
-  .metric {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .metric-value {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--accent);
-  }
-
-  .metric-label {
+  .eyebrow {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
+    font-size: 9px;
+    color: #10B981;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    margin-bottom: 8px;
   }
 
-  .project-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-    margin-top: 8px;
-    transition: gap 0.2s;
-  }
-
-  .project-link:hover { gap: 10px; }
-
-  /* EXPERIENCE */
-  .experience-section {
-    padding: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .exp-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .exp-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 28px 32px;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 32px;
-    align-items: start;
-    transition: border-color 0.2s;
-  }
-
-  .exp-item:hover { border-color: var(--border-accent); }
-
-  .exp-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    padding-top: 4px;
-    letter-spacing: 0.05em;
-  }
-
-  .exp-role {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 17px;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .exp-company {
-    font-size: 13px;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-weight: 400;
-  }
-
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .exp-bullets li {
-    font-size: 13px;
-    color: var(--text2);
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.6;
-  }
-
-  .exp-bullets li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: 700;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    padding: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .contact-card {
-    background: var(--surface);
-    border: 1px solid var(--border-accent);
-    border-radius: 12px;
-    padding: 60px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), var(--green), transparent);
-  }
-
-  .contact-title {
+  .name {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 48px;
-    color: var(--text);
-    margin-bottom: 16px;
+    font-size: 22px;
+    color: #E2E8F0;
     line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
-  .contact-title span { color: var(--accent); }
+  .name span { color: #0EA5E9; }
 
-  .contact-sub {
-    color: var(--text2);
-    font-size: 16px;
-    margin-bottom: 40px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
+  .title-line {
+    font-size: 11px;
+    color: #64748B;
+    font-weight: 400;
+    margin-top: 6px;
+    line-height: 1.5;
   }
 
-  .contact-links {
+  /* QR CODE */
+  .qr-wrap {
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px;
+    width: 88px;
+    height: 88px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 32px;
   }
 
-  .contact-info {
+  .qr-wrap img {
+    width: 76px;
+    height: 76px;
+    display: block;
+  }
+
+  /* QR placeholder SVG — using Google Charts API for real QR */
+  .qr-placeholder {
+    width: 76px;
+    height: 76px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* STATS ROW */
+  .stats {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(148,163,184,0.08);
+    border-bottom: 1px solid rgba(148,163,184,0.08);
+    padding: 14px 0;
+    margin-bottom: 18px;
+  }
+
+  .stat {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid rgba(148,163,184,0.08);
+  }
+  .stat:last-child { border-right: none; }
+
+  .sv {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #0EA5E9;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .sl {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--text3);
-    letter-spacing: 0.05em;
+    font-size: 8px;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 24px 80px;
+  /* TRACK BADGE */
+  .track-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(14,165,233,0.10);
+    border: 1px solid rgba(14,165,233,0.25);
+    border-radius: 20px;
+    padding: 6px 14px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+
+  .track-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #0EA5E9;
+  }
+
+  .track-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #0EA5E9;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* SKILLS */
+  .skill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .skill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 4px 9px;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+
+  .sk-b { color: #0EA5E9; background: rgba(14,165,233,0.08); border: 1px solid rgba(14,165,233,0.2); }
+  .sk-g { color: #10B981; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); }
+
+  /* CONTACT ROW */
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #64748B;
+    letter-spacing: 0.03em;
+  }
+
+  .contact-icon {
+    width: 14px;
+    text-align: center;
+    color: #0EA5E9;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* BOTTOM BAR */
+  .bottom-bar {
+    background: rgba(14,165,233,0.06);
+    border-top: 1px solid rgba(14,165,233,0.12);
+    padding: 10px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -663,322 +262,212 @@
     z-index: 1;
   }
 
-  footer span {
+  .bottom-bar span {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.05em;
+    font-size: 9px;
+    color: #334155;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 0 80px;
+  .stem-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #10B981;
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.2);
+    padding: 3px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.06em;
   }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  /* PRINT STYLES */
+  @media print {
+    body {
+      background: white;
+      padding: 10mm;
+    }
+    .print-hint { display: none; }
+    .cards { gap: 10mm; }
+    .card {
+      box-shadow: none;
+      border: 1px solid #e2e8f0;
+      break-inside: avoid;
+    }
+    .print-actions { display: none; }
   }
 
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+  .print-actions {
+    display: flex;
+    gap: 12px;
   }
 
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .print-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #0EA5E9;
+    background: rgba(14,165,233,0.08);
+    border: 1px solid rgba(14,165,233,0.25);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s;
   }
+  .print-btn:hover { background: rgba(14,165,233,0.15); }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    .stats-bar { padding: 32px 24px; }
-    .stats-inner { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .stat-item { border-right: none; padding: 0; }
-    .track-section, .projects-section, .experience-section, .contact-section { padding: 60px 24px; }
-    .track-card { grid-template-columns: 1fr; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-    .exp-item { grid-template-columns: 1fr; gap: 8px; }
-    .contact-card { padding: 40px 24px; }
-    .contact-title { font-size: 32px; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
-    .divider { margin: 0 24px; }
+  @media (max-width: 820px) {
+    .cards { grid-template-columns: 1fr; }
+    .card { width: 100%; max-width: 380px; }
   }
 </style>
 </head>
 <body>
 
-<div class="glow-orb"></div>
+<div class="print-hint">Buildathon Dallas 2026 — Recruiter Card</div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">JRK<span>.</span></div>
-  <div class="nav-links">
-    <a href="#track">Track</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Connect</a>
-  </div>
-  <div class="nav-badge">⚡ Buildathon Dallas 2026</div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-eyebrow">Agent Orchestration Track · June 18–19 · Irving TX</div>
-  <h1 class="hero-name">Jonathan<br>Raj <span class="accent">Katikala</span></h1>
-  <p class="hero-title">
-    <strong>Full Stack Engineer & AI Agent Builder.</strong> I ship production AI systems — not demos.
-    Multi-agent orchestration, workflow automation, and end-to-end web platforms for real clients with measurable outcomes.
-  </p>
-  <div class="hero-cta">
-    <a href="#contact" class="btn-primary">↗ Let's Connect at Buildathon</a>
-    <a href="https://github.com/Jonathan3712" target="_blank" class="btn-secondary">⌥ GitHub</a>
-    <a href="https://linkedin.com/in/jonathan-katikala/" target="_blank" class="btn-secondary">in LinkedIn</a>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item fade-in">
-      <div class="stat-value">60%</div>
-      <div class="stat-label">Ops Reduced</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-value">99%+</div>
-      <div class="stat-label">Data Accuracy</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-value">40%</div>
-      <div class="stat-label">Faster Processing</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-value">30+</div>
-      <div class="stat-label">Hours Saved/Mo</div>
-    </div>
-    <div class="stat-item fade-in">
-      <div class="stat-value">4</div>
-      <div class="stat-label">Live Systems</div>
-    </div>
-  </div>
+<div class="print-actions">
+  <button class="print-btn" onclick="window.print()">⎙ Print Cards</button>
 </div>
 
-<!-- TRACK -->
-<section id="track" class="track-section fade-in">
-  <div class="track-card">
-    <div>
-      <div class="track-eyebrow">// Buildathon Dallas 2026</div>
-      <h2 class="track-title">Agent<br><span>Orchestration</span><br>Track</h2>
-      <p class="track-desc">
-        Building production-grade multi-agent systems with tool-calling logic, workflow orchestration,
-        and real-world deployment. This isn't new territory for me — I've already shipped this category
-        of system for paying clients. At Buildathon, I'm extending that further.
-      </p>
-    </div>
-    <div class="track-skills">
-      <span class="skill-tag">Claude Code</span>
-      <span class="skill-tag">OpenAI APIs</span>
-      <span class="skill-tag">n8n Orchestration</span>
-      <span class="skill-tag">Tool-Calling</span>
-      <span class="skill-tag">Multi-Agent Systems</span>
-      <span class="skill-tag green">Node.js</span>
-      <span class="skill-tag green">Python</span>
-      <span class="skill-tag green">REST APIs</span>
-      <span class="skill-tag green">React / Next.js</span>
-      <span class="skill-tag amber">AWS Lambda</span>
-      <span class="skill-tag amber">CI/CD</span>
-      <span class="skill-tag amber">VPS Deployment</span>
-    </div>
-  </div>
-</section>
+<div class="cards">
 
-<hr class="divider">
+  <!-- CARD 1 — Front (Portfolio + QR) -->
+  <div class="card">
+    <div class="card-inner">
 
-<!-- PROJECTS -->
-<section id="projects" class="projects-section">
-  <div class="section-header fade-in">
-    <div class="section-eyebrow">// Production Systems</div>
-    <h2 class="section-title">What I've Shipped</h2>
-  </div>
-
-  <div class="projects-grid">
-
-    <!-- FEATURED -->
-    <div class="project-card featured fade-in">
-      <div>
-        <div class="project-badge">Production · Live</div>
-        <h3 class="project-name">Smart Trigger AI</h3>
-        <div class="project-stack">Claude · OpenAI · n8n · AWS · Node.js · Python</div>
-        <p class="project-desc">
-          LLM-powered multi-agent workflow platform built for real SMB clients. Multi-step orchestration,
-          tool-calling logic, output validation, and an OpenAI-to-Claude fallback router.
-          System runs live, handles real client data, and produces measurable business outcomes.
-        </p>
-        <a href="https://github.com/Jonathan3712/smart-trigger-ai" target="_blank" class="project-link">View on GitHub →</a>
-      </div>
-      <div>
-        <div class="project-metrics">
-          <div class="metric">
-            <span class="metric-value">60%</span>
-            <span class="metric-label">Manual Ops Cut</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">40%</span>
-            <span class="metric-label">Faster Processing</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">Real</span>
-            <span class="metric-label">SMB Clients</span>
+      <div class="top-row">
+        <div class="name-block">
+          <div class="eyebrow">⚡ Buildathon Dallas 2026</div>
+          <div class="name">Jonathan<br>Raj <span>Katikala</span></div>
+          <div class="title-line">Full Stack Engineer<br>AI Agent Builder</div>
+        </div>
+        <div class="qr-wrap">
+          <!-- Real QR via Google Charts API pointing to portfolio -->
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=76x76&data=https://jonathankatikala.netlify.app&bgcolor=ffffff&color=07090D&qzone=1"
+            alt="Portfolio QR"
+            width="76" height="76"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          >
+          <div class="qr-placeholder" style="display:none;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/>
+            </svg>
+            <span style="font-family:monospace;font-size:8px;color:#475569;">scan me</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="project-card fade-in">
-      <div class="project-badge">Production · Live</div>
-      <h3 class="project-name">Dubizzle WhatsApp Automation</h3>
-      <div class="project-stack">Python · Playwright · Gemini AI · n8n · Whapi · VPS</div>
-      <p class="project-desc">
-        End-to-end automated outreach pipeline for a Dubai client. Playwright scraping with UAE
-        residential proxy, Gemini AI phone extraction from canvas/SVG renders, WhatsApp messaging,
-        and 3-workflow n8n orchestration running 24/7 on VPS.
-      </p>
-      <div class="project-metrics" style="margin-top:16px">
-        <div class="metric">
-          <span class="metric-value">24/7</span>
-          <span class="metric-label">Uptime</span>
+      <div class="stats">
+        <div class="stat">
+          <div class="sv">60%</div>
+          <div class="sl">Ops Cut</div>
         </div>
-        <div class="metric">
-          <span class="metric-value">0</span>
-          <span class="metric-label">Duplicate Contacts</span>
+        <div class="stat">
+          <div class="sv">99%+</div>
+          <div class="sl">Accuracy</div>
+        </div>
+        <div class="stat">
+          <div class="sv">4</div>
+          <div class="sl">Live Systems</div>
+        </div>
+        <div class="stat">
+          <div class="sv">30+</div>
+          <div class="sl">Hrs/Mo Saved</div>
         </div>
       </div>
-    </div>
 
-    <div class="project-card fade-in">
-      <div class="project-badge">Deployed · Live</div>
-      <h3 class="project-name">Live Translation System</h3>
-      <div class="project-stack">Python · OpenAI Whisper · Google Translate · gTTS</div>
-      <p class="project-desc">
-        Real-time speech-to-text, translation, and text-to-speech pipeline deployed live
-        at a church service. Supports 11 languages at ~$0.43 per 2-hour session.
-      </p>
-      <a href="https://github.com/Jonathan3712/live-transcribe" target="_blank" class="project-link">View on GitHub →</a>
-    </div>
-
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- EXPERIENCE -->
-<section id="experience" class="experience-section">
-  <div class="section-header fade-in">
-    <div class="section-eyebrow">// Work History</div>
-    <h2 class="section-title">Experience</h2>
-  </div>
-
-  <div class="exp-timeline">
-
-    <div class="exp-item fade-in">
-      <div class="exp-date">Feb 2025 – Jan 2026</div>
-      <div>
-        <div class="exp-role">Volunteer Software Engineer</div>
-        <div class="exp-company">Hendricks Chapel · Syracuse University</div>
-        <ul class="exp-bullets">
-          <li>Built production full-stack platform in React, TypeScript, Next.js, MongoDB, Node.js — serving 10+ organizations from zero</li>
-          <li>Reduced content update time 40%, improved API response times 25%, saved 30+ manual deployment hours/month via CI/CD</li>
-          <li>Resolved 7+ production incidents through root-cause analysis; authored unit and integration test suites</li>
-        </ul>
+      <div class="track-badge">
+        <div class="track-dot"></div>
+        <span class="track-text">Agent Orchestration Track</span>
       </div>
-    </div>
 
-    <div class="exp-item fade-in">
-      <div class="exp-date">Jan 2026 – Present</div>
-      <div>
-        <div class="exp-role">Client Data Systems Analyst</div>
-        <div class="exp-company">Keepers Connections, Inc.</div>
-        <ul class="exp-bullets">
-          <li>Built Python & SQL ETL pipelines from 3–5 external sources — reduced inconsistencies 40%, sustained 99%+ accuracy</li>
-          <li>Delivered Tableau & Power BI dashboards cutting reporting turnaround 30% for non-technical stakeholders</li>
-        </ul>
+      <div class="skill-row">
+        <span class="skill sk-b">Claude Code</span>
+        <span class="skill sk-b">OpenAI APIs</span>
+        <span class="skill sk-b">n8n</span>
+        <span class="skill sk-b">Tool-Calling</span>
+        <span class="skill sk-g">React</span>
+        <span class="skill sk-g">Node.js</span>
+        <span class="skill sk-g">Python</span>
+        <span class="skill sk-g">Next.js</span>
       </div>
-    </div>
 
-    <div class="exp-item fade-in">
-      <div class="exp-date">May – Aug 2022</div>
-      <div>
-        <div class="exp-role">Web Developer</div>
-        <div class="exp-company">Multiplier AI Solutions · Hyderabad, India</div>
-        <ul class="exp-bullets">
-          <li>Shipped production JavaScript web app for healthcare client — improved page engagement 30%, deployment frequency 20%</li>
-        </ul>
+      <div class="contact-row">
+        <div class="contact-item">
+          <span class="contact-icon">✉</span>
+          jonathanraj5678@gmail.com
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">☎</span>
+          (315) 880-5752
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">⌥</span>
+          github.com/Jonathan3712
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">in</span>
+          linkedin.com/in/jonathan-katikala
+        </div>
       </div>
+
     </div>
-
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-  <div class="contact-card fade-in">
-    <h2 class="contact-title">Let's Talk<br>at <span>Buildathon</span></h2>
-    <p class="contact-sub">
-      I'm at the Agent Orchestration track June 18–19. If you're a recruiter, founder, or builder
-      — find me there or reach out before the event.
-    </p>
-    <div class="contact-links">
-      <a href="mailto:jonathanraj5678@gmail.com" class="btn-primary">✉ jonathanraj5678@gmail.com</a>
-      <a href="https://linkedin.com/in/jonathan-katikala/" target="_blank" class="btn-secondary">in LinkedIn</a>
-      <a href="https://github.com/Jonathan3712" target="_blank" class="btn-secondary">⌥ GitHub</a>
+    <div class="bottom-bar">
+      <span>jonathankatikala.netlify.app</span>
+      <span class="stem-badge">F-1 STEM OPT</span>
     </div>
-    <div class="contact-info">(315) 880-5752 · Syracuse, NY · F-1 STEM OPT Authorized · Open to Relocation</div>
   </div>
-</section>
 
-<footer>
-  <span>JONATHAN RAJ KATIKALA · BUILDATHON DALLAS 2026</span>
-  <span>AGENT ORCHESTRATION TRACK · IRVING TX · JUNE 18–19</span>
-</footer>
+  <!-- CARD 2 — Back (Projects highlight) -->
+  <div class="card">
+    <div class="card-inner">
 
-<script>
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      <div class="eyebrow" style="margin-bottom:16px;">// Production Systems — Shipped</div>
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px;">
 
-  // Smooth nav highlight
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+        <div style="background:rgba(14,165,233,0.06);border:1px solid rgba(14,165,233,0.15);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#E2E8F0;margin-bottom:4px;">Smart Trigger AI</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#475569;margin-bottom:8px;letter-spacing:0.04em;">Claude · OpenAI · n8n · AWS · Node.js</div>
+          <div style="font-size:12px;color:#94A3B8;line-height:1.6;">Multi-agent workflow platform for real SMB clients. Tool-calling, fallback routing, output validation. <span style="color:#0EA5E9;font-weight:500;">60% ops reduction.</span></div>
+        </div>
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
-    });
-  });
-</script>
+        <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#E2E8F0;margin-bottom:4px;">Dubizzle WhatsApp Automation</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#475569;margin-bottom:8px;letter-spacing:0.04em;">Python · Playwright · Gemini AI · n8n · VPS</div>
+          <div style="font-size:12px;color:#94A3B8;line-height:1.6;">24/7 automated client outreach pipeline with AI-powered extraction and 3-workflow n8n orchestration.</div>
+        </div>
+
+        <div style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:8px;padding:14px 16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#E2E8F0;margin-bottom:4px;">Live Translation System</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#475569;margin-bottom:8px;letter-spacing:0.04em;">Python · Whisper · Google Translate · gTTS</div>
+          <div style="font-size:12px;color:#94A3B8;line-height:1.6;">Real-time STT → translation → TTS in 11 languages. Deployed live at a church. <span style="color:#F59E0B;font-weight:500;">$0.43/session.</span></div>
+        </div>
+
+      </div>
+
+      <div style="border-top:1px solid rgba(148,163,184,0.08);padding-top:14px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#334155;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">Education</div>
+        <div style="font-size:12px;color:#94A3B8;line-height:1.6;">
+          M.S. Computer Science · SUNY Polytechnic Institute · GPA 3.4<br>
+          B.Tech Computer Science · Sri Indu College of Engineering
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom-bar">
+      <span>Open to Relocation · $75K–$120K</span>
+      <span class="stem-badge">Hire Me</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="print-hint" style="margin-top:8px;">Print · Cut · Hand to every recruiter at Match Day</div>
+
 </body>
 </html>
