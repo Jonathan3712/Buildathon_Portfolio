@@ -3,7 +3,7 @@
 > Personal portfolio page built specifically for **Buildathon Dallas 2026** (June 18–19, Irving TX).
 > Agent Orchestration track · Full Stack Engineer · AI Agent Builder.
 
-🔗 **Live site:** [jonathan-buildathon.netlify.app](https://buildathon-katikala.netlify.app)
+🔗 **Live site:** [buildathon-katikala.netlify.app](https://buildathon-katikala.netlify.app)
 
 ---
 
